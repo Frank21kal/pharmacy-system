@@ -38,7 +38,7 @@ Simple pharmacy dashboard for managing medicine inventory and sales.
 - CSS Grid & Flexbox
 - JavaScript Functions
 
-## 
+## Live Demo
 
 ##  Author
 
