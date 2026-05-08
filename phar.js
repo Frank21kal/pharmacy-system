@@ -61,7 +61,7 @@ function addMedicine() {
   showOutput(
     `<p>✅ ${name} added successfully!</p>`
   );
-  alert(`${name} added successfully!`);
+  //alert(`${name} added successfully!`);
 }
 
 document.getElementById("name").value = "";
