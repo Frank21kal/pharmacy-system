@@ -40,6 +40,6 @@ Simple pharmacy dashboard for managing medicine inventory and sales.
 
 ## 
 
-## 👨‍💻 Author
+##  Author
 
 Built by Kali Sowe
