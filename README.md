@@ -40,6 +40,8 @@ Simple pharmacy dashboard for managing medicine inventory and sales.
 
 ## Live Demo
 
+https://frank21kal.github.io/pharmacy-system/
+
 ##  Author
 
 Built by Kali Sowe
