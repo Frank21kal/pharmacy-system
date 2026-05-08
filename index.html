@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pharmacy Management System</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="phar.css">
+</head>
+
+<body>
+
+  <!-- --- NAVBAR --- -->
+
+  <!-- <nav class="navbar">
+
+    <div class="logo">
+      💊 PharmaKalCare
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Inventory</a></li>
+      <li><a href="#">Reports</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+  </nav> -->
+  <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 fixed-top">
+    <a class="navbar-brand" href="#">💊 PharmaKalCare</a>
+    <button class="navbar-toggler bg-outline-success" data-toggle="collapse" data-target="#navLinks">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">INVENTORY</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">REPORTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">CONTACT</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- --- HERO SECTION --- -->
+
+  <header class="hero">
+    <h1>Pharmacy Stock Management System</h1>
+    <p>
+      Manage inventory, track medicine sales,
+      and monitor expiry alerts easily.
+    </p>
+  </header>
+
+
+
+  <!-- --- MAIN CONTENT --- -->
+
+  <main class="container">
+
+    <!-- ADD MEDICINE -->
+    <section class="card">
+
+      <h2>Add Medicine</h2>
+
+      <input type="text" id="name" placeholder="Medicine Name">
+
+      <input type="number" id="quantity" placeholder="Quantity">
+
+      <input type="date" id="expiry">
+
+      <input type="number" id="price" placeholder="Price">
+
+      <button class="btn btn-outline-success" onclick="addMedicine()">
+        Add Medicine
+      </button>
+
+    </section>
+
+
+
+    <!-- SELL MEDICINE -->
+    <section class="card">
+
+      <h2>Sell Medicine</h2>
+
+      <input type="text" id="sellName" placeholder="Medicine Name">
+
+      <input type="number" id="sellQty" placeholder="Quantity">
+
+      <button class="btn btn-outline-warning" onclick="sellMedicine()">
+        Sell Medicine
+      </button>
+
+    </section>
+
+
+
+    <!-- ACTIONS -->
+    <section class="card action-card">
+
+      <h2>Quick Actions</h2>
+
+      <button class="btn btn-outline-primary" onclick="listInventory()">
+        View Inventory
+      </button>
+
+      <button class="btn btn-outline-danger" onclick="listExpiringSoon()">
+        Expiry Alerts
+      </button>
+
+      <button class="btn btn-outline-info" onclick="dailyReport()">
+        Daily Report
+      </button>
+
+    </section>
+
+
+
+    <!-- OUTPUT -->
+    <section class="output-card">
+
+      <div id="output">
+
+        Welcome to PharmaKalCare 💊
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="footer">
+
+    <p>
+      © 2026 PharmaKalCare System |
+      By FrankKal Tech
+    </p>
+
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script>
+    $(function () {
+      $(document).scroll(function () {
+        var $nav = $("#mainNavbar");
+        $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+      });
+    });
+  </script>
+
+  <script src="phar.js"></script>
+
+</body>
+
+</html>
