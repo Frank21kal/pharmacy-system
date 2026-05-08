@@ -1,0 +1,213 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #e8eceb;
+  color: #333;
+}
+
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  background: #28808a;
+  color: white;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 15px 40px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-nav a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar-nav a:hover {
+  color: #d1fae5;
+}
+
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+
+  background: linear-gradient(to right,
+      #0ba2b6,
+      #68b4be);
+
+  color: white;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card,
+.output-card {
+  background: rgb(172, 225, 252);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  margin-bottom: 20px;
+  color: #0f766e;
+}
+
+
+
+/* =========================
+   INPUTS
+========================= */
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #14b8a6;
+}
+
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  background: #0f766e;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #14b8a6;
+  transform: translateY(-2px);
+}
+
+
+
+/* =========================
+   OUTPUT
+========================= */
+
+#output h2 {
+
+  margin-bottom: 15px;
+  color: #0f766e;
+}
+
+#output p {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  background: #28808a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media(max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+}
