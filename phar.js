@@ -4,15 +4,15 @@ let inventory = [
   {
     name: "Relief",
     quantity: 500,
-    expiryDate: "2027-12-01",
-    price: 50
+    expiryDate: "2026-06-11",
+    price: 50.00
   },
 
   {
     name: "Paracetamol",
     quantity: 755,
-    expiryDate: "2027-05-01",
-    price: 20
+    expiryDate: "2026-06-12",
+    price: 20.00
   }
 
 ];
@@ -24,12 +24,9 @@ let sales = [];
 // ADD MEDICINE
 function addMedicine() {
 
-  let name =
-    document.getElementById("name").value.trim();
+  let name = document.getElementById("name").value.trim();
 
-  let quantity = Number(
-    document.getElementById("quantity").value
-  );
+  let quantity = Number(document.getElementById("quantity").value);
 
   let expiryDate =
     document.getElementById("expiry").value;
@@ -168,6 +165,7 @@ function listExpiringSoon() {
     "<h2>Expiry Alerts</h2>";
 
   let today = new Date();
+  let found = false;
 
   for (let med of inventory) {
 
@@ -180,15 +178,19 @@ function listExpiringSoon() {
       (1000 * 60 * 60 * 24);
 
     if (diff <= 30 && diff >= 0) {
-
+      found = true;
       text += `
                 <p>
                     ⚠️ ${med.name}
-                    expires in
-                    ${Math.floor(diff)} days
+                    expires on ${med.expiryDate}
+                    (${Math.floor(diff)} days left)
                 </p>
             `;
     }
+  }
+
+  if (!found) {
+    text += "<p>✅ No medicines are expiring soon.</p>";
   }
 
   showOutput(text);
