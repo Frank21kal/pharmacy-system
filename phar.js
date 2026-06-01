@@ -1,91 +1,168 @@
-// Inventory array
-let inventory = [
+// LOCAL STORAGE
 
-  {
-    name: "Relief",
-    quantity: 500,
-    expiryDate: "2026-06-11",
-    price: 50.00
-  },
+let inventory =
+  JSON.parse(localStorage.getItem("inventory"))
+  || [
 
-  {
-    name: "Paracetamol",
-    quantity: 755,
-    expiryDate: "2026-06-12",
-    price: 20.00
+    {
+      name: "Relief",
+      quantity: 500,
+      expiryDate: "2026-06-11",
+      price: 50
+    },
+
+    {
+      name: "Paracetamol",
+      quantity: 755,
+      expiryDate: "2026-06-12",
+      price: 20
+    }
+  ];
+
+let sales =
+  JSON.parse(localStorage.getItem("sales"))
+  || [];
+
+
+// SAVE DATA
+
+function saveData() {
+
+  localStorage.setItem(
+    "inventory",
+    JSON.stringify(inventory)
+  );
+
+  localStorage.setItem(
+    "sales",
+    JSON.stringify(sales)
+  );
+}
+
+
+// DASHBOARD
+
+function updateDashboard() {
+
+  document.getElementById(
+    "totalMedicines"
+  ).textContent = inventory.length;
+
+  document.getElementById(
+    "totalSales"
+  ).textContent = sales.length;
+
+  let revenue = 0;
+
+  for (let sale of sales) {
+
+    revenue += sale.totalPrice;
   }
 
-];
+  document.getElementById(
+    "totalRevenue"
+  ).textContent = `$${revenue}`;
+}
 
-let sales = [];
 
+// OUTPUT
+
+function showOutput(message) {
+
+  document.getElementById(
+    "output"
+  ).innerHTML = message;
+}
 
 
 // ADD MEDICINE
+
 function addMedicine() {
 
-  let name = document.getElementById("name").value.trim();
+  let name =
+    document.getElementById("name")
+      .value.trim();
 
-  let quantity = Number(document.getElementById("quantity").value);
+  let quantity =
+    Number(
+      document.getElementById("quantity")
+        .value
+    );
 
   let expiryDate =
-    document.getElementById("expiry").value;
+    document.getElementById("expiry")
+      .value;
 
-  let price = Number(
-    document.getElementById("price").value
-  );
-
-  if (name === "" || quantity <= 0 || expiryDate === "" || price <= 0) {
-
-    showOutput(
-      `<p style="color:red;">
-                ⚠️ Please fill all medicine details.
-            </p>`
+  let price =
+    Number(
+      document.getElementById("price")
+        .value
     );
+
+  if (
+    name === ""
+    ||
+    quantity <= 0
+    ||
+    expiryDate === ""
+    ||
+    price <= 0
+  ) {
+
+    showOutput(`
+      <p style="color:red;">
+        ⚠️ Fill all medicine details.
+      </p>
+    `);
 
     return;
   }
 
-  let medicine = {
+  inventory.push({
+
     name,
     quantity,
     expiryDate,
     price
-  };
+  });
 
-  inventory.push(medicine);
+  saveData();
 
-  showOutput(
-    `<p>✅ ${name} added successfully!</p>`
-  );
-  //alert(`${name} added successfully!`);
+  updateDashboard();
+
+  showOutput(`
+    <p>
+      ✅ ${name} added successfully!
+    </p>
+  `);
+
+  document.getElementById("name")
+    .value = "";
+
+  document.getElementById("quantity")
+    .value = "";
+
+  document.getElementById("expiry")
+    .value = "";
+
+  document.getElementById("price")
+    .value = "";
 }
-
-document.getElementById("name").value = "";
-document.getElementById("quantity").value = "";
-document.getElementById("expiry").value = "";
-document.getElementById("price").value = "";
-
 
 
 // SELL MEDICINE
+
 function sellMedicine() {
 
   let sellName =
-    document.getElementById("sellName").value.trim();
+    document.getElementById("sellName")
+      .value.trim();
 
-  let sellQty = Number(
-    document.getElementById("sellQty").value
-  );
-
-  if (sellName === "" || sellQty <= 0) {
-    showOutput(
-      `<p style="color:red;">
-                ⚠️ Enter medicine name and quantity.
-            </p>`
+  let sellQty =
+    Number(
+      document.getElementById("sellQty")
+        .value
     );
-    return;
-  }
 
   for (let med of inventory) {
 
@@ -93,78 +170,110 @@ function sellMedicine() {
       med.name.toLowerCase()
       ===
       sellName.toLowerCase()
-      &&
-      med.quantity >= sellQty
     ) {
 
-      med.quantity -= sellQty;
+      if (med.quantity >= sellQty) {
 
-      let total =
-        sellQty * med.price;
+        med.quantity -= sellQty;
 
-      sales.push({
+        let total =
+          sellQty * med.price;
 
-        medicineName: med.name,
+        sales.push({
 
-        quantitySold: sellQty,
+          medicineName: med.name,
 
-        totalPrice: total,
+          quantitySold: sellQty,
 
-        saleDate:
-          new Date().toDateString()
-      });
+          totalPrice: total
+        });
 
-      showOutput(
-        `<p>💊 Sold ${sellQty} of ${med.name}</p>`
-      );
-      document.getElementById("sellName")
-        .value = "";
-      document.getElementById("sellQty")
-        .value = "";
-      return;
+        saveData();
+
+        updateDashboard();
+
+        showOutput(`
+          <p>
+            💊 Sold ${sellQty}
+            of ${med.name}
+          </p>
+        `);
+
+        return;
+      }
     }
   }
 
-  showOutput(
-    `<p>❌ Medicine not found or insufficient stock</p>`
-  );
+  showOutput(`
+    <p style="color:red;">
+      ❌ Medicine not found
+      or insufficient stock.
+    </p>
+  `);
 }
 
 
+// INVENTORY
 
-// LIST INVENTORY
 function listInventory() {
 
-  let text =
-    "<h2>Inventory</h2>";
+  let text = `
+
+    <h2>
+      Inventory
+    </h2>
+
+    <table class="inventory-table" border="2" cellpadding="5">
+
+      <tr>
+
+        <th>Name</th>
+
+        <th>Qty</th>
+
+        <th>Expiry</th>
+
+        <th>Price</th>
+
+      </tr>
+  `;
 
   for (let med of inventory) {
 
     text += `
-            <p>
-                💊 <strong>${med.name}</strong>
-                <br>
-                Qty: ${med.quantity}
-                <br>
-                Expiry: ${med.expiryDate}
-                <br>
-                Price: $${med.price}
-            </p>
-        `;
+
+      <tr>
+
+        <td>${med.name}</td>
+
+        <td>${med.quantity}</td>
+
+        <td>${med.expiryDate}</td>
+
+        <td>$${med.price}</td>
+
+      </tr>
+    `;
   }
+
+  text += `
+    </table>
+  `;
 
   showOutput(text);
 }
 
 
-
 // EXPIRY ALERT
+
 function listExpiringSoon() {
 
   let text =
     "<h2>Expiry Alerts</h2>";
 
-  let today = new Date();
+  let today =
+    new Date();
+
   let found = false;
 
   for (let med of inventory) {
@@ -178,27 +287,81 @@ function listExpiringSoon() {
       (1000 * 60 * 60 * 24);
 
     if (diff <= 30 && diff >= 0) {
+
       found = true;
+
       text += `
-                <p>
-                    ⚠️ ${med.name}
-                    expires on ${med.expiryDate}
-                    (${Math.floor(diff)} days left)
-                </p>
-            `;
+
+        <p>
+
+          ⚠️ ${med.name}
+          expires in
+          ${Math.floor(diff)}
+          days
+
+        </p>
+      `;
     }
   }
 
   if (!found) {
-    text += "<p>✅ No medicines are expiring soon.</p>";
+
+    text += `
+      <p>
+        ✅ No medicines
+        expiring soon.
+      </p>
+    `;
   }
 
   showOutput(text);
 }
 
 
+// LOW STOCK
 
-// DAILY REPORT
+function lowStockAlert() {
+
+  let text =
+    "<h2>Low Stock Medicines</h2>";
+
+  let found = false;
+
+  for (let med of inventory) {
+
+    if (med.quantity <= 50) {
+
+      found = true;
+
+      text += `
+
+        <p>
+
+          ⚠️ ${med.name}
+          only has
+          ${med.quantity}
+          left.
+
+        </p>
+      `;
+    }
+  }
+
+  if (!found) {
+
+    text += `
+      <p>
+        ✅ No low stock medicines.
+      </p>
+    `;
+  }
+
+  showOutput(text);
+}
+
+
+// REPORT
+
 function dailyReport() {
 
   let totalRevenue = 0;
@@ -211,28 +374,30 @@ function dailyReport() {
     totalRevenue += sale.totalPrice;
 
     report += `
-            <p>
-                💰 ${sale.medicineName}
-                x ${sale.quantitySold}
-                =
-                $${sale.totalPrice}
-            </p>
-        `;
+
+      <p>
+
+        💰 ${sale.medicineName}
+        x ${sale.quantitySold}
+        =
+        $${sale.totalPrice}
+
+      </p>
+    `;
   }
 
   report += `
-        <h3>
-            Total Revenue:
-            $${totalRevenue}
-        </h3>
-    `;
+
+    <h3>
+      Total Revenue:
+      $${totalRevenue}
+    </h3>
+  `;
 
   showOutput(report);
 }
 
 
+// INITIALIZE
 
-// OUTPUT FUNCTION
-function showOutput(message) {
-  document.getElementById("output").innerHTML = message;
-}
+updateDashboard();
