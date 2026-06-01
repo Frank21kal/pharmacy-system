@@ -1,213 +1,315 @@
-/* =========================
-   GLOBAL STYLES
-========================= */
-
 * {
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
+
   font-family: Arial, sans-serif;
-  background: #e8eceb;
-  color: #333;
-}
 
+  background:
+    linear-gradient(135deg,
+      #0f172a,
+      #1e293b,
+      #334155);
 
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-  background: #28808a;
   color: white;
 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+
+.navbar {
+
+  background:
+    rgba(15, 23, 42, 0.8);
+
+  backdrop-filter: blur(10px);
 
   padding: 15px 40px;
 }
 
-.logo {
-  font-size: 24px;
+.navbar-brand {
+
+  font-size: 1.5rem;
+
   font-weight: bold;
 }
 
-.navbar-nav {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
+.nav-link {
 
-.navbar-nav a {
-  color: white;
-  text-decoration: none;
+  color: white !important;
+
+  margin-left: 15px;
+
   transition: 0.3s;
 }
 
-.navbar-nav a:hover {
-  color: #d1fae5;
+.nav-link:hover {
+
+  color: #14b8a6 !important;
 }
 
-
-
-/* =========================
-   HERO SECTION
-========================= */
+/* HERO */
 
 .hero {
+
   text-align: center;
-  padding: 60px 20px;
 
-  background: linear-gradient(to right,
+  padding: 120px 20px 60px;
+
+  background:
+    linear-gradient(to right,
       #0ba2b6,
-      #68b4be);
-
-  color: white;
+      #14b8a6);
 }
 
 .hero h1 {
-  font-size: 40px;
-  margin-bottom: 15px;
+
+  font-size: 3rem;
+
+  margin-bottom: 20px;
 }
 
 .hero p {
-  font-size: 18px;
+
+  font-size: 1.1rem;
 }
 
+/* DASHBOARD */
 
+.stats {
 
-/* =========================
-   MAIN CONTAINER
-========================= */
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+  margin: 40px 20px;
+}
+
+.stat-card {
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(15px);
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  min-width: 220px;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h3 {
+
+  font-size: 2rem;
+
+  color: #14b8a6;
+}
+
+/* CONTAINER */
 
 .container {
+
   width: 90%;
+
   max-width: 1200px;
+
   margin: 40px auto;
+
   display: grid;
+
   grid-template-columns:
     repeat(auto-fit, minmax(300px, 1fr));
+
   gap: 25px;
 }
 
-
-
-/* =========================
-   CARDS
-========================= */
+/* CARDS */
 
 .card,
 .output-card {
-  background: rgb(172, 225, 252);
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(15px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  color: white;
+
   padding: 25px;
-  border-radius: 15px;
+
+  border-radius: 20px;
+
+  transition: 0.3s ease;
+
   box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.1);
+    0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+
+  transform:
+    translateY(-5px);
+
+  box-shadow:
+    0 0 25px rgba(20, 184, 166, 0.4);
 }
 
 .card h2 {
+
   margin-bottom: 20px;
-  color: #0f766e;
+
+  color: #14b8a6;
 }
 
-
-
-/* =========================
-   INPUTS
-========================= */
+/* INPUTS */
 
 input {
+
   width: 100%;
+
   padding: 12px;
+
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
 
-input:focus {
+  border-radius: 10px;
+
+  border: none;
+
   outline: none;
-  border-color: #14b8a6;
 }
 
-
-
-/* =========================
-   BUTTONS
-========================= */
+/* BUTTONS */
 
 button {
-  background: #0f766e;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-right: 10px;
-  margin-top: 10px;
-  transition: 0.3s;
+
+  margin-top: 10px !important;
 }
 
-button:hover {
-  background: #14b8a6;
-  transform: translateY(-2px);
+/* OUTPUT */
+
+.output-card {
+
+  animation:
+    fadeIn 0.5s ease;
 }
-
-
-
-/* =========================
-   OUTPUT
-========================= */
 
 #output h2 {
 
-  margin-bottom: 15px;
-  color: #0f766e;
+  margin-bottom: 20px;
+
+  color: #14b8a6;
 }
 
 #output p {
-  background: #f9fafb;
-  padding: 12px;
-  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  padding: 15px;
+
+  border-radius: 10px;
+
   margin-bottom: 10px;
 }
 
+/* TABLE */
 
+.inventory-table {
 
-/* =========================
-   FOOTER
-========================= */
+  width: 100%;
 
-.footer {
-  background: #28808a;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+  border-collapse: collapse;
+
+  margin-top: 20px;
 }
 
+.inventory-table th {
 
+  background: #14b8a6;
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
+  color: white;
 
-@media(max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 15px;
+  padding: 12px;
+}
+
+.inventory-table td {
+
+  background: white;
+
+  color: black;
+
+  padding: 12px;
+
+  border-bottom:
+    1px solid #ccc;
+}
+
+/* FOOTER */
+
+.footer {
+
+  margin-top: 50px;
+
+  background:
+    rgba(15, 23, 42, 0.8);
+
+  text-align: center;
+
+  padding: 20px;
+}
+
+/* ANIMATION */
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px);
   }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:768px) {
 
   .hero h1 {
-    font-size: 28px;
+
+    font-size: 2rem;
   }
 
-  .navbar-nav {
+  .stats {
+
     flex-direction: column;
+
     align-items: center;
   }
 }
