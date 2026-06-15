@@ -40,25 +40,25 @@
       <ul class="navbar-nav ml-auto">
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#home">
             HOME
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#inventory">
             INVENTORY
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#reports">
             REPORTS
           </a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#contact">
             CONTACT
           </a>
         </li>
@@ -71,7 +71,7 @@
 
   <!-- HERO -->
 
-  <header class="hero">
+  <header id="home" class="hero">
 
     <h1>
       Pharmacy Stock Management System
@@ -182,25 +182,25 @@
         Quick Actions
       </h2>
 
-      <button class="btn btn-outline-primary" onclick="listInventory()">
+      <button id="inventory" class="btn btn-outline-primary" onclick="listInventory()">
 
         View Inventory
 
       </button>
 
-      <button class="btn btn-outline-danger" onclick="listExpiringSoon()">
+      <button id="expiry" class="btn btn-outline-danger" onclick="listExpiringSoon()">
 
         Expiry Alerts
 
       </button>
 
-      <button class="btn btn-dark" onclick="lowStockAlert()">
+      <button id="lowStock" class="btn btn-dark" onclick="lowStockAlert()">
 
         Low Stock
 
       </button>
 
-      <button class="btn btn-outline-info" onclick="dailyReport()">
+      <button id="reports" class="btn btn-outline-info" onclick="dailyReport()">
 
         Daily Report
 
@@ -225,11 +225,12 @@
   <!-- FOOTER -->
 
   <footer class="footer">
+    <div>
+      <p>
+        © 2026 PharmaKalCare | Frankiekal21@gmail.com
+      </p>
 
-    <p>
-      © 2026 PharmaKalCare | FrankKal
-    </p>
-
+    </div>
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
