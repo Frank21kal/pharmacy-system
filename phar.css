@@ -206,7 +206,7 @@ button {
 /* OUTPUT */
 
 .output-card {
-
+  width: 100%;
   animation:
     fadeIn 0.5s ease;
 }
@@ -216,6 +216,26 @@ button {
   margin-bottom: 20px;
 
   color: #14b8a6;
+}
+
+#output {
+
+  width: 100%;
+
+  overflow-x: auto;
+
+  box-sizing: border-box;
+}
+
+#output table {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  table-layout: auto;
+
+  border-collapse: collapse;
 }
 
 #output p {
@@ -233,12 +253,30 @@ button {
 /* TABLE */
 
 .inventory-table {
-
   width: 100%;
+
+  max-width: 100%;
 
   border-collapse: collapse;
 
+  table-layout: auto;
+
   margin-top: 20px;
+
+  box-sizing: border-box;
+}
+
+.inventory-table th,
+.inventory-table td {
+  padding: 10px 8px;
+
+  text-align: left;
+
+  white-space: normal;
+
+  word-break: normal;
+
+  overflow-wrap: normal;
 }
 
 .inventory-table th {
@@ -246,17 +284,13 @@ button {
   background: #14b8a6;
 
   color: white;
-
-  padding: 12px;
 }
 
 .inventory-table td {
 
-  background: white;
+  background: rgba(15, 23, 42, 0.8);
 
-  color: black;
-
-  padding: 12px;
+  color: white;
 
   border-bottom:
     1px solid #ccc;
@@ -312,4 +346,18 @@ button {
 
     align-items: center;
   }
+}
+
+.inventory-table {
+  width: 100% !important;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.inventory-table th,
+.inventory-table td {
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
